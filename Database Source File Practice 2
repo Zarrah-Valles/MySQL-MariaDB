@@ -1,0 +1,120 @@
+-- ===========================================================
+-- Database: simple_selling_zev
+-- Description: Simple Selling System with sample data
+-- ===========================================================
+
+-- Drop database if it already exists
+DROP DATABASE IF EXISTS simple_selling_zev;
+CREATE DATABASE simple_selling_zev;
+USE simple_selling_zev;
+
+-- ===========================================================
+-- Table: customer
+-- ===========================================================
+CREATE TABLE customer (
+    CustomerID CHAR(4) PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    Phone VARCHAR(20),
+    Email VARCHAR(100)
+);
+
+-- ===========================================================
+-- Table: employee
+-- ===========================================================
+CREATE TABLE employee (
+    EmployeeID CHAR(4) PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    Role VARCHAR(50)
+);
+
+-- ===========================================================
+-- Table: product
+-- ===========================================================
+CREATE TABLE product (
+    ProductID CHAR(4) PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    UnitPrice DECIMAL(10,2) NOT NULL,
+    StockQty INT NOT NULL
+);
+
+-- ===========================================================
+-- Table: receipt
+-- ===========================================================
+CREATE TABLE receipt (
+    ReceiptNo CHAR(4) PRIMARY KEY,
+    Date DATE NOT NULL,
+    CustomerID CHAR(4),
+    EmployeeID CHAR(4),
+    TotalAmount DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (CustomerID) REFERENCES customer(CustomerID),
+    FOREIGN KEY (EmployeeID) REFERENCES employee(EmployeeID)
+);
+
+-- ===========================================================
+-- Table: receipt_item
+-- ===========================================================
+CREATE TABLE receipt_item (
+    ReceiptNo CHAR(4),
+    ItemNo INT,
+    ProductID CHAR(4),
+    Qty INT NOT NULL,
+    UnitPrice DECIMAL(10,2) NOT NULL,
+    LineTotal DECIMAL(10,2) NOT NULL,
+    PRIMARY KEY (ReceiptNo, ItemNo),
+    FOREIGN KEY (ReceiptNo) REFERENCES receipt(ReceiptNo),
+    FOREIGN KEY (ProductID) REFERENCES product(ProductID)
+);
+
+-- ===========================================================
+-- Insert Data: customer
+-- ===========================================================
+INSERT INTO customer (CustomerID, Name, Phone, Email) VALUES
+('C001', 'Juan Dela Cruz', NULL, NULL),
+('C002', 'Ana Santos', NULL, NULL),
+('C003', 'Miguel Ramos', NULL, NULL),
+('C004', 'Grace Lim', NULL, NULL),
+('C005', 'Zarrah Exekiel Valles', NULL, NULL);
+
+-- ===========================================================
+-- Insert Data: employee
+-- ===========================================================
+INSERT INTO employee (EmployeeID, Name, Role) VALUES
+('E001', 'Maria Lopez', 'Cashier'),
+('E002', 'Carlo Reyes', 'Cashier'),
+('E003', 'Rico Tan', 'Cashier');
+
+-- ===========================================================
+-- Insert Data: product
+-- ===========================================================
+INSERT INTO product (ProductID, Name, UnitPrice, StockQty) VALUES
+('P001', 'Notebook A4', 50.00, 100),
+('P002', 'Pencil HB', 5.00, 200),
+('P003', 'Ballpen Blue', 8.00, 300),
+('P004', 'Glue Stick', 25.00, 50);
+
+-- ===========================================================
+-- Insert Data: receipt
+-- ===========================================================
+INSERT INTO receipt (ReceiptNo, Date, CustomerID, EmployeeID, TotalAmount) VALUES
+('R001', '2025-10-01', 'C001', 'E001', 140.00),
+('R002', '2025-10-02', 'C002', 'E002', 66.00),
+('R003', '2025-10-03', 'C003', 'E001', 25.00),
+('R004', '2025-10-04', 'C001', 'E003', 65.00),
+('R005', '2025-10-05', 'C004', 'E002', 32.00);
+
+-- ===========================================================
+-- Insert Data: receipt_item
+-- ===========================================================
+INSERT INTO receipt_item (ReceiptNo, ItemNo, ProductID, Qty, UnitPrice, LineTotal) VALUES
+('R001', 1, 'P001', 2, 50.00, 100.00),
+('R001', 2, 'P003', 5, 8.00, 40.00),
+('R002', 1, 'P002', 10, 5.00, 50.00),
+('R002', 2, 'P003', 2, 8.00, 16.00),
+('R003', 1, 'P004', 1, 25.00, 25.00),
+('R004', 1, 'P001', 1, 50.00, 50.00),
+('R004', 2, 'P002', 3, 5.00, 15.00),
+('R005', 1, 'P003', 4, 8.00, 32.00);
+
+-- ===========================================================
+-- End of SQL File
+-- ===========================================================
