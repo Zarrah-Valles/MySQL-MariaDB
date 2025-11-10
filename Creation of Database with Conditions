@@ -1,0 +1,55 @@
+-- ===========================
+-- Practical Quiz Script
+-- SchoolDB_ZEV (replace ZEV with your initials)
+-- ===========================
+
+-- 1. Create Database
+CREATE DATABASE IF NOT EXISTS SchoolDB_ZEV;
+USE SchoolDB_ZEV;
+
+-- 2. Create Tables
+
+-- Students Table
+CREATE TABLE IF NOT EXISTS Students (
+    student_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    email VARCHAR(100) UNIQUE
+);
+
+-- Enrollments Table
+CREATE TABLE IF NOT EXISTS Enrollments (
+    enrollment_id INT PRIMARY KEY,
+    student_id INT,
+    course_name VARCHAR(100),
+    enrollment_date DATE,
+    FOREIGN KEY (student_id) REFERENCES Students(student_id)
+);
+
+-- 3. Insert Sample Records
+
+INSERT INTO Students (student_id, first_name, last_name, email) VALUES
+(1, 'Anna', 'Lopez', 'anna.lopez@example.com'),
+(2, 'Brian', 'Santos', 'brian.santos@example.com'),
+(3, 'Carla', 'Reyes', 'carla.reyes@example.com');
+
+INSERT INTO Enrollments (enrollment_id, student_id, course_name, enrollment_date) VALUES
+(1, 1, 'Mathematics', '2025-09-01'),
+(2, 1, 'Science', '2025-09-02'),
+(3, 2, 'English', '2025-09-01'),
+(4, 3, 'History', '2025-09-03');
+
+-- 4. Query Tasks
+
+-- a) Display the table structure
+DESCRIBE Students;
+DESCRIBE Enrollments;
+
+-- b) Show all students with their enrolled courses
+SELECT s.student_id, s.first_name, s.last_name, e.course_name, e.enrollment_date
+FROM Students s
+JOIN Enrollments e ON s.student_id = e.student_id;
+
+-- 5. Backup
+-- Run in terminal (not inside SQL):
+-- mysqldump -u your_username -p SchoolDB_ZEV > SchoolDB_ZEV.sql
