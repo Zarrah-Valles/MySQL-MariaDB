@@ -1,0 +1,485 @@
+
+Setting environment for using XAMPP for Windows.
+Lenovo@DESKTOP-8F4RCC7 c:\users\lenovo\documents\xampp
+# mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use studentZEV
+Database changed
+MariaDB [studentZEV]> desc studentinfo;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| studentud | char(4)     | YES  |     | NULL    |       |
+| Name      | varchar(50) | YES  |     | NULL    |       |
+| Major     | varchar(70) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+3 rows in set (0.111 sec)
+
+MariaDB [studentZEV]> ALTER  table studentinfo CHANGE COLUMN studentud student_id char(4);
+Query OK, 0 rows affected (0.155 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [studentZEV]> desc studentinfo;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| student_id | char(4)     | YES  |     | NULL    |       |
+| Name       | varchar(50) | YES  |     | NULL    |       |
+| Major      | varchar(70) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.017 sec)
+
+MariaDB [studentZEV]> ALTER table studentinfo MODIFY COLUMN student_id char(4) NOT NULL;
+Query OK, 0 rows affected (0.403 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [studentZEV]> desc studentinfo;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| student_id | char(4)     | NO   |     | NULL    |       |
+| Name       | varchar(50) | YES  |     | NULL    |       |
+| Major      | varchar(70) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.015 sec)
+
+MariaDB [studentZEV]> ALTER  table studentinfo ADD COLUMN BDAY date;
+Query OK, 0 rows affected (0.122 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [studentZEV]> desc studentinfo;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| student_id | char(4)     | NO   |     | NULL    |       |
+| Name       | varchar(50) | YES  |     | NULL    |       |
+| Major      | varchar(70) | YES  |     | NULL    |       |
+| BDAY       | date        | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.019 sec)
+
+MariaDB [studentZEV]> ALTER  table studentinfo ADD COLUMN Gender enum("Male", "Female") NOT NULL;
+Query OK, 0 rows affected (0.109 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [studentZEV]> desc studentinfo;
++------------+-----------------------+------+-----+---------+-------+
+| Field      | Type                  | Null | Key | Default | Extra |
++------------+-----------------------+------+-----+---------+-------+
+| student_id | char(4)               | NO   |     | NULL    |       |
+| Name       | varchar(50)           | YES  |     | NULL    |       |
+| Major      | varchar(70)           | YES  |     | NULL    |       |
+| BDAY       | date                  | YES  |     | NULL    |       |
+| Gender     | enum('Male','Female') | NO   |     | NULL    |       |
++------------+-----------------------+------+-----+---------+-------+
+5 rows in set (0.022 sec)
+
+MariaDB [studentZEV]> ALTER  table studentinfo ADD COLUMN address varchar(100);
+Query OK, 0 rows affected (0.105 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [studentZEV]> ALTER  table studentinfo ADD COLUMN Allowance smallint;
+Query OK, 0 rows affected (0.111 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [studentZEV]> desc studentinfo;
++------------+-----------------------+------+-----+---------+-------+
+| Field      | Type                  | Null | Key | Default | Extra |
++------------+-----------------------+------+-----+---------+-------+
+| student_id | char(4)               | NO   |     | NULL    |       |
+| Name       | varchar(50)           | YES  |     | NULL    |       |
+| Major      | varchar(70)           | YES  |     | NULL    |       |
+| BDAY       | date                  | YES  |     | NULL    |       |
+| Gender     | enum('Male','Female') | NO   |     | NULL    |       |
+| address    | varchar(100)          | YES  |     | NULL    |       |
+| Allowance  | smallint(6)           | YES  |     | NULL    |       |
++------------+-----------------------+------+-----+---------+-------+
+7 rows in set (0.081 sec)
+
+MariaDB [studentZEV]> ALTER table studentinfo MODIFY COLUMN Allowance float(7,2);
+Query OK, 0 rows affected (0.767 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [studentZEV]> desc studentinfo;
++------------+-----------------------+------+-----+---------+-------+
+| Field      | Type                  | Null | Key | Default | Extra |
++------------+-----------------------+------+-----+---------+-------+
+| student_id | char(4)               | NO   |     | NULL    |       |
+| Name       | varchar(50)           | YES  |     | NULL    |       |
+| Major      | varchar(70)           | YES  |     | NULL    |       |
+| BDAY       | date                  | YES  |     | NULL    |       |
+| Gender     | enum('Male','Female') | NO   |     | NULL    |       |
+| address    | varchar(100)          | YES  |     | NULL    |       |
+| Allowance  | float(7,2)            | YES  |     | NULL    |       |
++------------+-----------------------+------+-----+---------+-------+
+7 rows in set (0.016 sec)
+
+MariaDB [studentZEV]> ALTER table studentinfo MODIFY COLUMN Allowance int;
+Query OK, 0 rows affected (0.833 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [studentZEV]> desc studentinfo;
++------------+-----------------------+------+-----+---------+-------+
+| Field      | Type                  | Null | Key | Default | Extra |
++------------+-----------------------+------+-----+---------+-------+
+| student_id | char(4)               | NO   |     | NULL    |       |
+| Name       | varchar(50)           | YES  |     | NULL    |       |
+| Major      | varchar(70)           | YES  |     | NULL    |       |
+| BDAY       | date                  | YES  |     | NULL    |       |
+| Gender     | enum('Male','Female') | NO   |     | NULL    |       |
+| address    | varchar(100)          | YES  |     | NULL    |       |
+| Allowance  | int(11)               | YES  |     | NULL    |       |
++------------+-----------------------+------+-----+---------+-------+
+7 rows in set (0.015 sec)
+
+MariaDB [studentZEV]> ALTER table studentinfo MODIFY COLUMN Allowance bigint;
+Query OK, 0 rows affected (0.869 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [studentZEV]> desc studentinfo;
++------------+-----------------------+------+-----+---------+-------+
+| Field      | Type                  | Null | Key | Default | Extra |
++------------+-----------------------+------+-----+---------+-------+
+| student_id | char(4)               | NO   |     | NULL    |       |
+| Name       | varchar(50)           | YES  |     | NULL    |       |
+| Major      | varchar(70)           | YES  |     | NULL    |       |
+| BDAY       | date                  | YES  |     | NULL    |       |
+| Gender     | enum('Male','Female') | NO   |     | NULL    |       |
+| address    | varchar(100)          | YES  |     | NULL    |       |
+| Allowance  | bigint(20)            | YES  |     | NULL    |       |
++------------+-----------------------+------+-----+---------+-------+
+7 rows in set (0.015 sec)
+
+MariaDB [studentZEV]> ALTER table studentinfo MODIFY COLUMN Allowance double(6,2);
+Query OK, 0 rows affected (1.131 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [studentZEV]> desc studentinfo;
++------------+-----------------------+------+-----+---------+-------+
+| Field      | Type                  | Null | Key | Default | Extra |
++------------+-----------------------+------+-----+---------+-------+
+| student_id | char(4)               | NO   |     | NULL    |       |
+| Name       | varchar(50)           | YES  |     | NULL    |       |
+| Major      | varchar(70)           | YES  |     | NULL    |       |
+| BDAY       | date                  | YES  |     | NULL    |       |
+| Gender     | enum('Male','Female') | NO   |     | NULL    |       |
+| address    | varchar(100)          | YES  |     | NULL    |       |
+| Allowance  | double(6,2)           | YES  |     | NULL    |       |
++------------+-----------------------+------+-----+---------+-------+
+7 rows in set (0.099 sec)
+
+MariaDB [studentZEV]> ALTER table studentinfo MODIFY COLUMN Allowance tinyint;
+Query OK, 0 rows affected (0.790 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [studentZEV]> desc studentinfo;
++------------+-----------------------+------+-----+---------+-------+
+| Field      | Type                  | Null | Key | Default | Extra |
++------------+-----------------------+------+-----+---------+-------+
+| student_id | char(4)               | NO   |     | NULL    |       |
+| Name       | varchar(50)           | YES  |     | NULL    |       |
+| Major      | varchar(70)           | YES  |     | NULL    |       |
+| BDAY       | date                  | YES  |     | NULL    |       |
+| Gender     | enum('Male','Female') | NO   |     | NULL    |       |
+| address    | varchar(100)          | YES  |     | NULL    |       |
+| Allowance  | tinyint(4)            | YES  |     | NULL    |       |
++------------+-----------------------+------+-----+---------+-------+
+7 rows in set (0.019 sec)
+
+MariaDB [studentZEV]> ALTER table studentinfo MODIFY COLUMN Allowance decimal(7,2);
+Query OK, 0 rows affected (2.846 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [studentZEV]> desc studentinfo;
++------------+-----------------------+------+-----+---------+-------+
+| Field      | Type                  | Null | Key | Default | Extra |
++------------+-----------------------+------+-----+---------+-------+
+| student_id | char(4)               | NO   |     | NULL    |       |
+| Name       | varchar(50)           | YES  |     | NULL    |       |
+| Major      | varchar(70)           | YES  |     | NULL    |       |
+| BDAY       | date                  | YES  |     | NULL    |       |
+| Gender     | enum('Male','Female') | NO   |     | NULL    |       |
+| address    | varchar(100)          | YES  |     | NULL    |       |
+| Allowance  | decimal(7,2)          | YES  |     | NULL    |       |
++------------+-----------------------+------+-----+---------+-------+
+7 rows in set (0.015 sec)
+
+MariaDB [studentZEV]> ALTER table studentinfo MODIFY COLUMN Allowance decimal(10,2);
+Query OK, 0 rows affected (1.172 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [studentZEV]> explain studentinfo;
++------------+-----------------------+------+-----+---------+-------+
+| Field      | Type                  | Null | Key | Default | Extra |
++------------+-----------------------+------+-----+---------+-------+
+| student_id | char(4)               | NO   |     | NULL    |       |
+| Name       | varchar(50)           | YES  |     | NULL    |       |
+| Major      | varchar(70)           | YES  |     | NULL    |       |
+| BDAY       | date                  | YES  |     | NULL    |       |
+| Gender     | enum('Male','Female') | NO   |     | NULL    |       |
+| address    | varchar(100)          | YES  |     | NULL    |       |
+| Allowance  | decimal(10,2)         | YES  |     | NULL    |       |
++------------+-----------------------+------+-----+---------+-------+
+7 rows in set (0.074 sec)
+
+MariaDB [studentZEV]> insert into studentinfo values
+    -> ('S001','Zarrah Valles','Information Technology','2006-03-06','Female','Dela Paz, Pasig',500.00);
+Query OK, 1 row affected (0.240 sec)
+
+MariaDB [studentZEV]> SELECT * FROM studentinfo;
++------------+---------------+------------------------+------------+--------+-----------------+-----------+
+| student_id | Name          | Major                  | BDAY       | Gender | address         | Allowance |
++------------+---------------+------------------------+------------+--------+-----------------+-----------+
+| S001       | Zarrah Valles | Information Technology | 2006-03-06 | Female | Dela Paz, Pasig |    500.00 |
++------------+---------------+------------------------+------------+--------+-----------------+-----------+
+1 row in set (0.000 sec)
+
+MariaDB [studentZEV]> alter table studentinfo change address address varchar(20);
+Query OK, 1 row affected (0.556 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+MariaDB [studentZEV]> insert into studentinfo values('S002','Exekiel Valles','Information Technology','2006-03-06','Female','Dela Paz, Pasig',500.00);
+Query OK, 1 row affected (0.072 sec)
+
+MariaDB [studentZEV]> SELECT * FROM studentinfo;
++------------+----------------+------------------------+------------+--------+-----------------+-----------+
+| student_id | Name           | Major                  | BDAY       | Gender | address         | Allowance |
++------------+----------------+------------------------+------------+--------+-----------------+-----------+
+| S001       | Zarrah Valles  | Information Technology | 2006-03-06 | Female | Dela Paz, Pasig |    500.00 |
+| S002       | Exekiel Valles | Information Technology | 2006-03-06 | Female | Dela Paz, Pasig |    500.00 |
++------------+----------------+------------------------+------------+--------+-----------------+-----------+
+2 rows in set (0.000 sec)
+
+MariaDB [studentZEV]> update studentinfo set Gender='Male';
+Query OK, 2 rows affected (0.415 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+MariaDB [studentZEV]> SELECT * FROM studentinfo;
++------------+----------------+------------------------+------------+--------+-----------------+-----------+
+| student_id | Name           | Major                  | BDAY       | Gender | address         | Allowance |
++------------+----------------+------------------------+------------+--------+-----------------+-----------+
+| S001       | Zarrah Valles  | Information Technology | 2006-03-06 | Male   | Dela Paz, Pasig |    500.00 |
+| S002       | Exekiel Valles | Information Technology | 2006-03-06 | Male   | Dela Paz, Pasig |    500.00 |
++------------+----------------+------------------------+------------+--------+-----------------+-----------+
+2 rows in set (0.000 sec)
+
+MariaDB [studentZEV]> update studentinfo set Gender='Female';
+Query OK, 2 rows affected (0.116 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+MariaDB [studentZEV]> update studentinfo SET Allowance=1500.00 where student_id='S002';
+Query OK, 1 row affected (0.070 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [studentZEV]> SELECT * FROM studentinfo;
++------------+----------------+------------------------+------------+--------+-----------------+-----------+
+| student_id | Name           | Major                  | BDAY       | Gender | address         | Allowance |
++------------+----------------+------------------------+------------+--------+-----------------+-----------+
+| S001       | Zarrah Valles  | Information Technology | 2006-03-06 | Female | Dela Paz, Pasig |    500.00 |
+| S002       | Exekiel Valles | Information Technology | 2006-03-06 | Female | Dela Paz, Pasig |   1500.00 |
++------------+----------------+------------------------+------------+--------+-----------------+-----------+
+2 rows in set (0.000 sec)
+
+MariaDB [studentZEV]> create table sbk_up like studentinfo; insert into sbk_up select * from studentinfo;
+Query OK, 0 rows affected (0.537 sec)
+
+Query OK, 2 rows affected (0.027 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [studentZEV]> show tables
+    -> ;
++----------------------+
+| Tables_in_studentzev |
++----------------------+
+| sbk_up               |
+| studentinfo          |
++----------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [studentZEV]> create table studentzzz_up like studentinfo;
+Query OK, 0 rows affected (0.205 sec)
+
+MariaDB [studentZEV]> show tables;
++----------------------+
+| Tables_in_studentzev |
++----------------------+
+| sbk_up               |
+| studentinfo          |
+| studentzzz_up        |
++----------------------+
+3 rows in set (0.001 sec)
+
+MariaDB [studentZEV]> select * from studentzzz_up;
+Empty set (0.002 sec)
+
+MariaDB [studentZEV]> insert into studentzzz_up select * from studentinfo;
+Query OK, 2 rows affected (0.072 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [studentZEV]> select * from studentinfo;
++------------+----------------+------------------------+------------+--------+-----------------+-----------+
+| student_id | Name           | Major                  | BDAY       | Gender | address         | Allowance |
++------------+----------------+------------------------+------------+--------+-----------------+-----------+
+| S001       | Zarrah Valles  | Information Technology | 2006-03-06 | Female | Dela Paz, Pasig |    500.00 |
+| S002       | Exekiel Valles | Information Technology | 2006-03-06 | Female | Dela Paz, Pasig |   1500.00 |
++------------+----------------+------------------------+------------+--------+-----------------+-----------+
+2 rows in set (0.000 sec)
+
+MariaDB [studentZEV]> select * from studentzzz_up;
++------------+----------------+------------------------+------------+--------+-----------------+-----------+
+| student_id | Name           | Major                  | BDAY       | Gender | address         | Allowance |
++------------+----------------+------------------------+------------+--------+-----------------+-----------+
+| S001       | Zarrah Valles  | Information Technology | 2006-03-06 | Female | Dela Paz, Pasig |    500.00 |
+| S002       | Exekiel Valles | Information Technology | 2006-03-06 | Female | Dela Paz, Pasig |   1500.00 |
++------------+----------------+------------------------+------------+--------+-----------------+-----------+
+2 rows in set (0.000 sec)
+
+MariaDB [studentZEV]> truncate table studentzzz_up;
+Query OK, 0 rows affected (0.296 sec)
+
+MariaDB [studentZEV]> select * from studentzzz_up;
+Empty set (0.000 sec)
+
+MariaDB [studentZEV]> insert into studentzzz_up select * from studentinfo;
+Query OK, 2 rows affected (0.095 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [studentZEV]> select * from studentzzz_up;
++------------+----------------+------------------------+------------+--------+-----------------+-----------+
+| student_id | Name           | Major                  | BDAY       | Gender | address         | Allowance |
++------------+----------------+------------------------+------------+--------+-----------------+-----------+
+| S001       | Zarrah Valles  | Information Technology | 2006-03-06 | Female | Dela Paz, Pasig |    500.00 |
+| S002       | Exekiel Valles | Information Technology | 2006-03-06 | Female | Dela Paz, Pasig |   1500.00 |
++------------+----------------+------------------------+------------+--------+-----------------+-----------+
+2 rows in set (0.000 sec)
+
+MariaDB [studentZEV]> drop table studentzzz_up;
+Query OK, 0 rows affected (0.169 sec)
+
+MariaDB [studentZEV]> show tables;
++----------------------+
+| Tables_in_studentzev |
++----------------------+
+| sbk_up               |
+| studentinfo          |
++----------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [studentZEV]> /quit
+    -> bye
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '/quit
+bye' at line 1
+MariaDB [studentZEV]> \quit
+Bye
+
+Lenovo@DESKTOP-8F4RCC7 c:\users\lenovo\documents\xampp
+# mysqldump -u root -p studentZEV > "c:\Desktop\IM\studentZEV.sql
+The system cannot find the path specified.
+
+Lenovo@DESKTOP-8F4RCC7 c:\users\lenovo\documents\xampp
+# mysqldump -u root -p studentZEV > "c:\Desktop\IM\studentZEV.sql"
+The system cannot find the path specified.
+
+Lenovo@DESKTOP-8F4RCC7 c:\users\lenovo\documents\xampp
+# mysqldump -u root -p studentZEV > "c:\This PC\Desktop\IM\studentZEV.sql"
+The system cannot find the path specified.
+
+Lenovo@DESKTOP-8F4RCC7 c:\users\lenovo\documents\xampp
+# mysqldump -u root -p studentZEV > "C:\Users\Lenovo\Desktop\IM\studentZEV.sql"
+Enter password:
+
+Lenovo@DESKTOP-8F4RCC7 c:\users\lenovo\documents\xampp
+# mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 10
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use studentZEV
+Database changed
+MariaDB [studentZEV]> select * from sbk_up;
++------------+----------------+------------------------+------------+--------+-----------------+-----------+
+| student_id | Name           | Major                  | BDAY       | Gender | address         | Allowance |
++------------+----------------+------------------------+------------+--------+-----------------+-----------+
+| S001       | Zarrah Valles  | Information Technology | 2006-03-06 | Female | Dela Paz, Pasig |    500.00 |
+| S002       | Exekiel Valles | Information Technology | 2006-03-06 | Female | Dela Paz, Pasig |   1500.00 |
++------------+----------------+------------------------+------------+--------+-----------------+-----------+
+2 rows in set (0.000 sec)
+
+MariaDB [studentZEV]> \quit
+Bye
+
+Lenovo@DESKTOP-8F4RCC7 c:\users\lenovo\documents\xampp
+# mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 11
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> drop database studentZEV;
+Query OK, 2 rows affected (0.396 sec)
+
+MariaDB [(none)]> create database studentZECV;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> use studentZECV;
+Database changed
+MariaDB [studentZECV]> show tables;
+Empty set (0.001 sec)
+
+MariaDB [studentZECV]> \quit
+Bye
+
+Lenovo@DESKTOP-8F4RCC7 c:\users\lenovo\documents\xampp
+# mysql -u root -p studentZECV < "C:\Users\Lenovo\Desktop\IM\studentZEV.sql"
+Enter password:
+
+Lenovo@DESKTOP-8F4RCC7 c:\users\lenovo\documents\xampp
+# mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 13
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use studentZECV;
+Database changed
+MariaDB [studentZECV]> show tables;
++-----------------------+
+| Tables_in_studentzecv |
++-----------------------+
+| sbk_up                |
+| studentinfo           |
++-----------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [studentZECV]> select * from studentinfo;
++------------+----------------+------------------------+------------+--------+-----------------+-----------+
+| student_id | Name           | Major                  | BDAY       | Gender | address         | Allowance |
++------------+----------------+------------------------+------------+--------+-----------------+-----------+
+| S001       | Zarrah Valles  | Information Technology | 2006-03-06 | Female | Dela Paz, Pasig |    500.00 |
+| S002       | Exekiel Valles | Information Technology | 2006-03-06 | Female | Dela Paz, Pasig |   1500.00 |
++------------+----------------+------------------------+------------+--------+-----------------+-----------+
+2 rows in set (0.001 sec)
+
+MariaDB [studentZECV]> \quit
+Bye
+
+Lenovo@DESKTOP-8F4RCC7 c:\users\lenovo\documents\xampp
+#
